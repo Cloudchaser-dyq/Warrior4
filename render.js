@@ -394,10 +394,8 @@
         updSubfield(el, '.loyalty', u.kind === 'lion' && u.loyalty != null ? '忠诚 ' + u.loyalty : null);
         used.add(key);
       } else {
-        // 消失: 淡出后移除
-        el.classList.add('dead');
-        setTimeout(() => el.remove && el.remove(), 850);
-        used.add(key); // 占位
+        // 消失: 直接移除节点(不留尸体累积;特效在上面的 playEffects 已呈现)
+        el.remove();
       }
     }
 
