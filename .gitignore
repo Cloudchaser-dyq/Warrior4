@@ -1,0 +1,5 @@
+# 原始测试数据(已内嵌进 data_embedded.js,无需重复上传)
+data/
+# 系统文件
+Thumbs.db
+.DS_Store

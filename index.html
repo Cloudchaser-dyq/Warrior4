@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>魔兽世界 4AC — 战役可视化回放</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+  <!-- 顶栏 -->
+  <header id="banner">
+    <h1>⚔️ 魔兽 4AC 战役回放</h1>
+    <span class="sub" id="case-info">加载中…</span>
+    <div class="spacer"></div>
+    <span id="score" style="display:none">
+      <span class="r">红</span> 0 ｜ <span class="b">蓝</span> 0
+    </span>
+  </header>
+
+  <div id="main">
+    <!-- 战场 -->
+    <div id="scene-wrap">
+      <canvas id="scene"></canvas>
+      <div id="radar">Case <span class="rk" id="radar-case">?</span></div>
+      <div id="legend">
+        <div class="row"><span class="dot" style="background:var(--red)"></span><span class="lbl">红方</span></div>
+        <div class="row"><span class="dot" style="background:var(--blue)"></span><span class="lbl">蓝方</span></div>
+        <div class="row"><span class="dot" style="background:var(--gold)"></span><span class="lbl">旗/元素/战况</span></div>
+      </div>
+      <div id="tooltip"></div>
+    </div>
+
+    <!-- 日志侧栏 -->
+    <aside id="log-panel">
+      <div id="log-head">
+        战况日志
+        <div class="spacer"></div>
+        <input id="log-search" type="search" placeholder="过滤词…" autocomplete="off">
+      </div>
+      <div id="log-list"></div>
+    </aside>
+  </div>
+
+  <!-- 控制栏 -->
+  <footer id="controls">
+    <select id="case-select" title="选择案例"></select>
+    <button id="btn-play" class="primary" title="播放/暂停 (空格)">▶ 播放</button>
+    <button id="btn-step" title="下一步">步进</button>
+    <button id="btn-prev" title="上一步">◀ 上一步</button>
+    <button id="btn-restart" title="回到开始">↺ 复位</button>
+    <button id="btn-end" title="跳到结尾">跳尾 ⏭</button>
+    <div style="display:flex;align-items:center;gap:6px">
+      <select id="speed-select" title="播放速度">
+        <option value="0.3">0.3×</option>
+        <option value="0.6">0.6×</option>
+        <option value="1" selected>1×</option>
+        <option value="2">2×</option>
+        <option value="4">4×</option>
+        <option value="8">8×</option>
+      </select>
+      <input id="seekbar" type="range" min="0" max="100" value="0" title="进度">
+    </div>
+    <span id="time-readout">000:00</span>
+    <button id="btn-open" title="打开自定义日志/数据">📂 打开数据</button>
+  </footer>
+</div>
+
+<input type="file" id="file-input" accept=".in,.out,.txt,.log" hidden multiple>
+
+<script src="parser.js"></script>
+<script src="engine.js"></script>
+<script src="data_embedded.js"></script>
+<script src="render.js"></script>
+</body>
+</html>
