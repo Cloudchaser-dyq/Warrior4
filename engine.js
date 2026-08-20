@@ -133,8 +133,10 @@
         break;
       }
       case 'arrowKill': case 'bomb': case 'killed': {
+        // killed:  victim 是 unitKey; arrowKill: victim 是 vUnitKey(射箭者存活);
+        // bomb:     持弹者(unitKey)同归于尽,vUnitKey 也被炸死
         if (ev.vUnitKey) removeUnit(state, ev.vUnitKey);
-        if (ev.unitKey && ev.type === 'killed') removeUnit(state, ev.unitKey);
+        if (ev.unitKey && ev.type !== 'arrowKill') removeUnit(state, ev.unitKey);
         break;
       }
       case 'attacked': {
